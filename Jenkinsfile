@@ -26,9 +26,10 @@ pipeline {
         
         stage("Mona- Push Image to Dockerhub") {
             steps {
-                script {
-                    def image = docker.build('mkdockerpractices/mona_jenkinsproject:2026')
-                    image.push()
+                sh """
+                    docker push mkdockerpractices/mona_jenkinsproject:2026
+                
+            """
         
         }
     }
