@@ -14,5 +14,14 @@ pipeline {
                 // we have docker compose yaml so just need docker commose build to build the image
             }
         }
+        stage("Mona- Login to Dockerhub") {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DH_USER', passwordVariable: 'DH_PASS')]) {
+                    sh """
+                        echo "$DH_PASS" | docker login -u "$DH_USER" --password-stdin
+                """
+        }
+      }
+    }
    }
 }
