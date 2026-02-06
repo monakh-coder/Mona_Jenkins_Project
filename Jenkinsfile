@@ -26,12 +26,16 @@ pipeline {
         
         stage("Mona- Push Image to Dockerhub") {
             steps {
-                sh """
-                    docker push mkdockerpractices/mona_jenkinsproject:2026
-                
-            """
-        
-        }
+                echo "Running in $WORKSPACE"
+                dir("$WORKSPACE/azure-vote") {  
+                    script {
+                        docker.withRegistry('', 'dockerhub') {
+                            def image = docker.build('mkdockerpractices/mona_jenkinsproject:2023') 
+                            image.push()
+                        }
+                    }
+                }
+
     }
   }
    
