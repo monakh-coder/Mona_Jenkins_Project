@@ -30,7 +30,7 @@ pipeline {
                 dir("$WORKSPACE/azure-vote") {  
                     script {
                         docker.withRegistry('', 'dockerhub') {
-                            def image = docker.build('mkdockerpractices/mona_jenkinsproject:latest') 
+                            def image = docker.build('mkdockerpractices/mona_jenkinsproject:2025') 
                             image.push()
                         }
                     }
